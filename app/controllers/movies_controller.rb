@@ -10,10 +10,12 @@ class MoviesController < ApplicationController
 
   def show
     @is_admin = is_admin?
+    @cinema = Cinema.find(@movie.cinema_id)
   end
 
   def new
     @movie = Movie.new
+    @cinemas = Cinema.where.missing(:movies)
   end
 
   def create
@@ -28,6 +30,8 @@ class MoviesController < ApplicationController
   end
 
   def edit
+    @is_admin = is_admin?
+    @cinemas = Cinema.where.missing(:movies)
   end
 
   def update
@@ -56,6 +60,6 @@ class MoviesController < ApplicationController
     end
 
     def movie_parameters
-      params.require(:movie).permit(:name)
+      params.require(:movie).permit(:name, :cinema_id)
     end
 end

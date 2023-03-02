@@ -10,6 +10,7 @@ class CinemasController < ApplicationController
 
   def show
     @is_admin = is_admin?
+    @movies = @cinema.movies
   end
 
   def new

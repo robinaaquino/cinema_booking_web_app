@@ -2,6 +2,14 @@
   Name: <%= @cinema.name %>
 </p>
 
+<% if @movies.any? %>
+  <% @movies.each do |movie| %>
+    <span>
+      Movie Name: <%= movie.name %>
+    </span>
+  <%end%>
+<% end %>
+
 <%= button_to "Back to cinemas", cinemas_path, method: :get, :class => "btn btn-primary"%>
 
 <% if @is_admin %>

@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :users
   resources :movies
   resources :cinemas
-  resources :assignments
   resources :seats
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

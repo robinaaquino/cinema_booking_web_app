@@ -3,8 +3,13 @@
 <% @users.each do |user| %>
   <div class="container">
     <span>
-      <%= user.full_name %>
+      Full Name: <%= user.full_name %>
     </span>
+    <br>
+    <span>
+      Role: <%= user.role %>
+    </span>
+    <br>
     <br>
   </div>
 <% end %>

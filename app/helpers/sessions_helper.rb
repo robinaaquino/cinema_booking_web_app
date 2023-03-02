@@ -9,6 +9,10 @@ module SessionsHelper
     end
   end
 
+  def is_admin?
+    current_user.role == "admin"
+  end
+
   def logged_in?
     !current_user.nil?
   end

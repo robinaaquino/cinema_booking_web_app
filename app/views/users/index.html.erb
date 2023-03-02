@@ -1,0 +1,10 @@
+<h1> Users <h1>
+
+<% @users.each do |user| %>
+  <div class="container">
+    <span>
+      <%= user.full_name %>
+    </span>
+    <br>
+  </div>
+<% end %>

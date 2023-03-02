@@ -1,0 +1,22 @@
+<h1> Movies <h1>
+
+<% if @is_admin %>
+  <span>Movie Count: <%= @movie_count %></span>
+  <br>
+  <span><%= link_to "New movie", new_movie_path %></span>
+<% end %>
+
+<br>
+
+<% @movies.each do |movie| %>
+  <div class="container">
+    <br>
+    <span>
+      Name: <%= movie.name %>
+    </span>
+    <span>
+      <%= link_to "Movie Details", movie %>
+    </span>
+    <br>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<p>
+  Name: <%= @cinema.name %>
+</p>
+
+<%= button_to "Back to cinemas", cinemas_path, method: :get, :class => "btn btn-primary"%>
+
+<% if @is_admin %>
+  <%= button_to "Edit this cinema", edit_cinema_path(@cinema), method: :get, :class => "btn btn-primary"%>
+  <%= button_to "Destroy this cinema", @cinema, method: :delete, :class => "btn btn-primary"%>
+<% end %>

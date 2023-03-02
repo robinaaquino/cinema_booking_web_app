@@ -15,4 +15,4 @@ test:
 
 production:
   <<: *default
-  database: cinema_booking_web_app_production
+  database: <%= ENV['DATABASE_URL'] %>

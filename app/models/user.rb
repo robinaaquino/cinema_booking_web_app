@@ -10,10 +10,7 @@ class User < ApplicationRecord
   validates :number, presence: true
   validates :password, presence: true
 
-  enum role: {
-    customer: 0,
-    admin: 1
-  }
+  enum :role, [:customer, :admin], default: :customer
 
   has_secure_password
 

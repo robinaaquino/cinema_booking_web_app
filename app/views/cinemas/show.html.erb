@@ -29,7 +29,9 @@
       </div>
     <%end%>
 
-    <%= button_to "Book seats", new_seat_path, method: :get, :class => "btn btn-primary", params: { cinema_id: @cinema.id }%>
+    <% if logged_in? %>
+      <%= button_to "Book seats", new_seat_path, method: :get, :class => "btn btn-primary", params: { cinema_id: @cinema.id }%>
+    <%end%>
   <%end%>
 <% end %>
 

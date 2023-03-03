@@ -10,6 +10,29 @@
       Role: <%= user.role %>
     </span>
     <br>
+    <span>
+      <% if @seats[user.id] %>
+        Bookings:
+        <% @seats[user.id].each do |seat| %>
+          <div class="container">
+            <p>
+              Timeslot: <%= seat.timeslot %>
+            </p>
+            <p>
+              Seat Number: <%= seat.seat_number %>
+            </p>
+            <p>
+              Cinema Name: <%= seat.cinema.name %>
+            </p>
+            <p>
+              Movie Name: <%= @movies_info[seat.cinema_id]%>
+            </p>
+            <br>
+          </div>
+        <% end %>
+      <% end %>
+    </span>
+    <br>
     <br>
   </div>
 <% end %>

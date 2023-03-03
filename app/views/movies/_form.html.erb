@@ -4,8 +4,10 @@
       <%= f.label :name %>
       <%= f.text_field :name%>
 
-      <%= f.label :cinema_id %>
-      <%= f.select :cinema_id, @cinemas.collect {|cinema| [cinema.name, cinema.id]} %>
+      <% if !@cinemas.nil? %>
+        <%= f.label :cinema_id %>
+        <%= f.select :cinema_id, @cinemas.collect {|cinema| [cinema.name, cinema.id]} %>
+      <% end %>
 
       <%= f.submit class: 'btn btn-primary' %>
     <% end %>

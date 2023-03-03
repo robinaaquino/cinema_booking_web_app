@@ -11,12 +11,17 @@
 <% @cinemas.each do |cinema| %>
   <div class="container">
     <br>
-    <span>
+    <p>
       Name: <%= cinema.name %>
-    </span>
-    <span>
+    </p>
+    <% if @is_admin %>
+      <p>
+        Bookings: <%= @cinema_info[cinema.id] %>
+      </p>
+    <% end %>
+    <p>
       <%= link_to "Cinema Details", cinema %>
-    </span>
+    </p>
     <br>
   </div>
 <% end %>

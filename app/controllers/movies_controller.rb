@@ -36,6 +36,10 @@ class MoviesController < ApplicationController
   def edit
     @is_admin = is_admin?
     @cinemas = Cinema.where.missing(:movies)
+    if @cinemas.nil? || @cinemas.count == 0
+      flash[:danger] = "No available cinemas"
+      redirect_to cinemas_url
+    end
   end
 
   def update

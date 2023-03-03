@@ -6,6 +6,7 @@
 </p>
 
 <%= button_to "Back to movies", movies_path, method: :get, :class => "btn btn-primary"%>
+<%= button_to "View cinema and book", cinema_path, method: :get, :class => "btn btn-primary"%>
 
 <% if @is_admin %>
   <%= button_to "Edit this movie", edit_movie_path(@movie), method: :get, :class => "btn btn-primary"%>

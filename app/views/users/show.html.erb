@@ -1,5 +1,7 @@
 <p>
   Full Name: <%= @user.full_name %>
+</p>
+<p>
   Role: <%= @user.role %>
 </p>
 
@@ -12,7 +14,7 @@
     Seat Number: <%= seat.seat_number %>
   </p>
   <p>
-    Cinema Name: <%= seat.cinema.name %>
+    Cinema Name: <%= link_to seat.cinema.name, seat.cinema %>
   </p>
    <p>
     Movie Name: <%= @movies[seat.cinema_id] %>

@@ -1,11 +1,40 @@
+<script>
+  $(function() {
+    $('.form_select').hide();
+    $('.form_select._10am').show();
+    $("#seat_timeslot").change(function() {
+      $('.form_select').hide();
+      $('.form_select.' + $(seat_timeslot).val()).show();
+      console.log($('.form_select.' + $(seat_timeslot).val()))
+    })
+  });
+</script>
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_with(model: seat) do |f| %>
       <%= f.label :timeslot %>
-      <%= f.select :timeslot, options_for_select(Seat.timeslots.map {|key, value| [key.titleize, Seat.timeslots.key(value)]}, @seat.timeslot) %>
+      <%= f.select :timeslot, options_for_select(@timeslot_choices.map {|key, value| [key, @timeslot_choices.key(value)]}, @seat.timeslot)%>
 
-      <%= f.label :seat_number %>
-      <%= f.select :seat_number, options_for_select(Seat.seat_numbers.map {|key, value| [key.titleize, Seat.seat_numbers.key(value)]}, @seat.seat_number) %>
+      <div class="form_select _10am">
+        <%= f.label :seat_number %>
+        <%= f.select :seat_number, options_for_select(@seat_number_choices_10am.map {|key, value| [key, @seat_number_choices_10am.key(value)]}, @seat.seat_number) %>
+      </div>
+
+      <div class="form_select _2pm">
+        <%= f.label :seat_number %>
+        <%= f.select :seat_number, options_for_select(@seat_number_choices_2pm.map {|key, value| [key, @seat_number_choices_2pm.key(value)]}, @seat.seat_number) %>
+      </div>
+
+      <div class="form_select _6pm">
+        <%= f.label :seat_number %>
+        <%= f.select :seat_number, options_for_select(@seat_number_choices_6pm.map {|key, value| [key, @seat_number_choices_6pm.key(value)]}, @seat.seat_number) %>
+      </div>
+
+      <div class="form_select _10pm">
+        <%= f.label :seat_number %>
+        <%= f.select :seat_number, options_for_select(@seat_number_choices_10pm.map {|key, value| [key, @seat_number_choices_10pm.key(value)]}, @seat.seat_number) %>
+      </div>
 
       <%= f.hidden_field :cinema_id, :value => params[:cinema_id]%>
 

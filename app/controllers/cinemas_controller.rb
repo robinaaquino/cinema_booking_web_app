@@ -16,6 +16,8 @@ class CinemasController < ApplicationController
     @is_admin = is_admin?
     @movies = @cinema.movies
     @seat_count = Seat.where(cinema_id: @cinema.id).count
+
+    @all_seats = Seat.includes(:user, :cinema)
   end
 
   def new

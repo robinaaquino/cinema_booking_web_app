@@ -16,13 +16,17 @@ class MoviesController < ApplicationController
   def new
     @movie = Movie.new
     @cinemas = Cinema.where.missing(:movies)
+    if @cinemas.nil? || @cinemas.count == 0
+      flash[:danger] = "No available cinemas"
+      redirect_to cinemas_url
+    end
   end
 
   def create
     @movie = current_user.movies.build(movie_parameters)
     if @movie.save
       flash.now[:success] = "Successfully created a movie"
-      redirect_to @movie
+      redirect_to movies_url
     else
       flash.now[:danger] = "Unable to create movie"
       render 'new'

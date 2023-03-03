@@ -10,7 +10,7 @@ module SessionsHelper
   end
 
   def is_admin?
-    current_user.role == "admin"
+    logged_in? && current_user.role == "admin"
   end
 
   def logged_in?

@@ -10,18 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_02_072554) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_02_072453) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "assignments", force: :cascade do |t|
-    t.bigint "movie_id", null: false
-    t.bigint "cinema_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cinema_id"], name: "index_assignments_on_cinema_id"
-    t.index ["movie_id"], name: "index_assignments_on_movie_id"
-  end
 
   create_table "cinemas", force: :cascade do |t|
     t.string "name"
@@ -34,8 +25,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_02_072554) do
   create_table "movies", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id", null: false
+    t.bigint "cinema_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cinema_id"], name: "index_movies_on_cinema_id"
     t.index ["user_id"], name: "index_movies_on_user_id"
   end
 
@@ -54,16 +47,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_02_072554) do
     t.string "full_name"
     t.string "email"
     t.string "number"
-    t.string "string"
     t.string "password_digest"
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "assignments", "cinemas"
-  add_foreign_key "assignments", "movies"
   add_foreign_key "cinemas", "users"
+  add_foreign_key "movies", "cinemas"
   add_foreign_key "movies", "users"
   add_foreign_key "seats", "cinemas"
   add_foreign_key "seats", "users"

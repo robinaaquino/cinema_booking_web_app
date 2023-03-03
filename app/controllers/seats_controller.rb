@@ -1,5 +1,6 @@
 class SeatsController < ApplicationController
   before_action :set_seat, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:create, :edit, :update, :destroy]
 
   def index
     @seats = Seat.all

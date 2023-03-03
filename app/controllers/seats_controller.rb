@@ -1,6 +1,5 @@
 class SeatsController < ApplicationController
   before_action :set_seat, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, only: [:create, :edit, :update, :destroy]
 
   def index
     @seats = Seat.all
@@ -8,26 +7,7 @@ class SeatsController < ApplicationController
 
   def new
     @seat = Seat.new
-    @seats = Seat.where(cinema_id: params[:cinema_id])
-    @timeslot_choices = {_10am: 0, _2pm: 1, _6pm: 2, _10pm: 3}
-
-    @seat_number_choices_10am = {seat_0: 0, seat_1: 1, seat_2: 2, seat_3: 3, seat_4: 4, seat_5: 5, seat_6: 6, seat_7: 7, seat_8: 8, seat_9: 9}
-    @seat_number_choices_2pm = {seat_0: 0, seat_1: 1, seat_2: 2, seat_3: 3, seat_4: 4, seat_5: 5, seat_6: 6, seat_7: 7, seat_8: 8, seat_9: 9}
-    @seat_number_choices_6pm = {seat_0: 0, seat_1: 1, seat_2: 2, seat_3: 3, seat_4: 4, seat_5: 5, seat_6: 6, seat_7: 7, seat_8: 8, seat_9: 9}
-    @seat_number_choices_10pm = {seat_0: 0, seat_1: 1, seat_2: 2, seat_3: 3, seat_4: 4, seat_5: 5, seat_6: 6, seat_7: 7, seat_8: 8, seat_9: 9}
-
-    @seats.each do |seat|
-      puts @timeslot_seat_number
-      if seat.timeslot == "_10am"
-        @seat_number_choices_10am.delete(:"#{seat.seat_number}")
-      elsif seat.timeslot == "_2pm"
-        @seat_number_choices_2pm.delete(:"#{seat.seat_number}")
-      elsif seat.timeslot == "_6pm"
-        @seat_number_choices_6pm.delete(:"#{seat.seat_number}")
-      else
-        @seat_number_choices_10pm.delete(:"#{seat.seat_number}")
-      end
-    end
+    @seats = Seat.where(user_id: current_user, cinema_id: params[:cinema_id])
   end
 
   def show

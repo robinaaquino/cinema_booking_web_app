@@ -11,6 +11,24 @@
       Number of Bookings: <%= @seat_count %>
     </p>
 
+    <% if @seat_count > 0 %>
+      <br>
+      <div>
+        <% @all_seats.each do |seat| %>
+          <p>
+            Full Name: <%= link_to seat.user.full_name, seat.user %>
+          </p>
+          <p>
+            Time Slot: <%= seat.timeslot %>
+          </p>
+          <p>
+            Seat Number: <%= seat.seat_number %>
+          </p>
+          <br>
+        <% end %>
+      </div>
+    <%end%>
+
     <%= button_to "Book seats", new_seat_path, method: :get, :class => "btn btn-primary", params: { cinema_id: @cinema.id }%>
   <%end%>
 <% end %>

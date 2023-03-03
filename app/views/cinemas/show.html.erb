@@ -4,12 +4,12 @@
 
 <% if @movies.any? %>
   <% @movies.each do |movie| %>
-    <span>
+    <p>
       Movie Name: <%= movie.name %>
-    </span>
-    <span>
-      Bookings Count: <%= @seat_count %>
-    </span>
+    </p>
+    <p>
+      Number of Bookings: <%= @seat_count %>
+    </p>
 
     <%= button_to "Book seats", new_seat_path, method: :get, :class => "btn btn-primary", params: { cinema_id: @cinema.id }%>
   <%end%>

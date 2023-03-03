@@ -1,3 +1,5 @@
+User.destroy_all
+
 User.create!([{
   full_name: 'user', email: 'user@user.com', number: '123', password: 'testtest', role: 'customer'
 },

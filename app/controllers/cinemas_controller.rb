@@ -6,11 +6,16 @@ class CinemasController < ApplicationController
     @cinemas = Cinema.all
     @is_admin = is_admin?
     @cinema_count = Cinema.count
+    @cinema_info = {}
+    @cinemas.each do |cinema|
+      @cinema_info[cinema.id] = Seat.where(cinema_id: cinema.id).count
+    end
   end
 
   def show
     @is_admin = is_admin?
     @movies = @cinema.movies
+    @seat_count = Seat.where(cinema_id: @cinema.id).count
   end
 
   def new

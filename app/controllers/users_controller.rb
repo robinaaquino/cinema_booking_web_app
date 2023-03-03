@@ -3,10 +3,38 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @all_seats = Seat.includes(:user, :cinema)
+    @seats = {}
+    @users.each do |user|
+      @seats[user.id] = []
+      @all_seats.each do |seat|
+        if seat.user_id == user.id
+          @seats[user.id].push(seat)
+        end
+      end
+    end
+
+    @movies = Movie.all
+    @movies_info = {}
+    @movies.each do |movie|
+      @movies_info[movie.cinema_id] = movie.name
+    end
   end
 
   def show
     @user = User.find(params[:id])
+    @all_seats = Seat.includes(:user, :cinema)
+    @seats = []
+    @all_seats.each do |seat|
+      if seat.user_id == @user.id
+        @seats.push(seat)
+      end
+    end
+
+    @movies = {}
+    @seats.each do |seat|
+      @movies[seat.cinema_id] = Movie.find_by(cinema_id: seat.cinema_id).name
+    end
   end
 
   def new

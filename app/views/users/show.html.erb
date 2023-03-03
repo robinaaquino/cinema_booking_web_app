@@ -3,3 +3,20 @@
   Role: <%= @user.role %>
 </p>
 
+<h2>Booked Seats</h2>
+<% @seats.each do |seat| %>
+  <p>
+    Timeslot: <%= seat.timeslot %>
+  </p>
+  <p>
+    Seat Number: <%= seat.seat_number %>
+  </p>
+  <p>
+    Cinema Name: <%= seat.cinema.name %>
+  </p>
+   <p>
+    Movie Name: <%= @movies[seat.cinema_id] %>
+  </p>
+  <br>
+<%end%>
+

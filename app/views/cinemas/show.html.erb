@@ -4,12 +4,12 @@
 
 <% if @movies.any? %>
   <% @movies.each do |movie| %>
-    <h3>
+    <h4>
       Movie Name: <%= movie.name %>
-    </h3>
-    <h3>
+    </h4>
+    <h4>
       Number of Bookings: <%= @seat_count %>
-    </h3>
+    </h4>
 
     <% @time_slot_values.each do |key, value| %>
       <div class="btn-group" role="group">

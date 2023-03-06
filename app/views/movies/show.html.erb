@@ -6,9 +6,12 @@
 </p>
 
 <%= button_to "Back to movies", movies_path, method: :get, :class => "btn btn-primary"%>
-<%= button_to "View cinema and book", cinema_path, method: :get, :class => "btn btn-primary"%>
+<br>
+<%= button_to "Book now", cinema_path, method: :get, :class => "btn btn-primary"%>
+<br>
 
 <% if @is_admin %>
   <%= button_to "Edit this movie", edit_movie_path(@movie), method: :get, :class => "btn btn-primary"%>
+  <br>
   <%= button_to "Delete this movie", @movie, method: :delete, :class => "btn btn-primary"%>
 <% end %>

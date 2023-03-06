@@ -1,22 +1,24 @@
 <h1> Movies <h1>
 
 <% if @is_admin %>
-  <span>Movie Count: <%= @movie_count %></span>
+  <p>Number of all movies: <%= @movie_count %></p>
   <br>
-  <span><%= link_to "New movie", new_movie_path %></span>
+  <p><%= link_to "Create a new movie", new_movie_path %></p>
 <% end %>
 
-<br>
-
-<% @movies.each do |movie| %>
-  <div class="container">
-    <br>
-    <span>
-      Name: <%= movie.name %>
-    </span>
-    <span>
-      <%= link_to "Movie Details", movie %>
-    </span>
-    <br>
-  </div>
-<% end %>
+<table class ="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Movie Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <th scope="row"><%= movie.id %></th>
+        <td><%= link_to movie.name, movie %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

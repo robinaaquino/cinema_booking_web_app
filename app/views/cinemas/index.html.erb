@@ -1,27 +1,26 @@
 <h1> Cinemas <h1>
 
 <% if @is_admin %>
-  <span>Cinema Count: <%= @cinema_count %></span>
+  <p>Number of all cinemas: <%= @cinema_count %></p>
   <br>
-  <span><%= link_to "New cinema", new_cinema_path %></span>
+  <p><%= link_to "Create a new cinema", new_cinema_path %></p>
 <% end %>
 
-<br>
-
-<% @cinemas.each do |cinema| %>
-  <div class="container">
-    <br>
-    <p>
-      Name: <%= cinema.name %>
-    </p>
-    <% if @is_admin %>
-      <p>
-        Bookings: <%= @cinema_info[cinema.id] %>
-      </p>
+<table class ="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Cinema Name</th>
+      <th scope="col">Bookings Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cinemas.each do |cinema| %>
+      <tr>
+        <th scope="row"><%= cinema.id %></th>
+        <td><%= link_to cinema.name, cinema %></td>
+        <td><%= @cinema_info[cinema.id] %></td>
+      </tr>
     <% end %>
-    <p>
-      <%= link_to "Cinema Details", cinema %>
-    </p>
-    <br>
-  </div>
-<% end %>
+  </tbody>
+</table>

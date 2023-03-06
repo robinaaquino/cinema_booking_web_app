@@ -21,10 +21,11 @@
   <%end%>
 <% end %>
 
-<h2> All bookings </h2>
+
 
 <% if @is_admin %>
   <% if @seat_count > 0 %>
+    <h2> All bookings </h2>
     <br>
     <div>
       <table class ="table table-striped">
@@ -58,6 +59,7 @@
   <%= button_to "Edit this cinema", edit_cinema_path(@cinema), method: :get, :class => "btn btn-primary"%>
   <br>
   <%= button_to "Delete this cinema", @cinema, method: :delete, :class => "btn btn-primary"%>
-  <br>
 <% end %>
+  <br>
+  <br>
   <%= button_to "Back to cinemas", cinemas_path, method: :get, :class => "btn btn-primary"%>

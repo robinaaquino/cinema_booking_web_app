@@ -14,8 +14,8 @@
     <% @seats.each do |seat| %>
       <tr>
         <th scope="row"><%= seat.id %></th>
-        <td><%= seat.user.full_name %></td>
-        <td><%= seat.cinema.name %></td>
+        <td><%= link_to seat.user.full_name, seat.cinema %></td>
+        <td><%= link_to seat.cinema.name, seat.cinema %></td>
         <td><%= "#{@time_slot_values[:"#{seat.timeslot}"]}" %></td>
         <td><%= "#{@seat_number_values[:"#{seat.seat_number}"]}" %></td>
       </tr>

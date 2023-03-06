@@ -57,10 +57,10 @@ class SeatsController < ApplicationController
 
     if @exists.nil?
       if @seat.save
-        flash[:success] = "Successfully created a seat"
+        flash[:success] = "Successfully booked a seat"
         redirect_to @seat
       else
-        flash[:danger] = "Unable to create seat"
+        flash[:danger] = "Unable to book a seat"
         redirect_to cinemas_url
       end
     else
@@ -84,10 +84,10 @@ class SeatsController < ApplicationController
 
   def destroy
     if @seat.destroy
-      flash.now[:success] = "Successfully deleted a seat"
+      flash.now[:success] = "Successfully unbooked a seat"
       redirect_to seats_url
     else
-      flash.now[:danger] = "Unable to delete seat"
+      flash.now[:danger] = "Unable to unbook seat"
       render 'index'
     end
   end

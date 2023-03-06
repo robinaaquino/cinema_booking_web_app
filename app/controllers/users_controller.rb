@@ -64,7 +64,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash.now[:success] = "Successfully created account"
+      flash.now[:success] = "Successfully created an account"
       redirect_to @user
     else
       flash.now[:danger] = "Unable to sign up"

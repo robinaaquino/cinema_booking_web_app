@@ -2,13 +2,17 @@
   Movie Name: <%= @movie.name %>
 </h3>
 <h4>
-  Cinema Name: <%= @cinema.name %>
+  Cinema Name: <%= link_to @cinema.name, @cinema %>
 </h4>
 
 <%= button_to "Back to movies", movies_path, method: :get, :class => "btn btn-primary"%>
 <br>
 <% if logged_in? %>
-  <%= button_to "Book now", cinema_path, method: :get, :class => "btn btn-primary"%>
+  <%if is_admin? %>
+    <%= button_to "View all bookings or book a seat", cinema_path, method: :get, :class => "btn btn-primary"%>
+  <% else %>
+    <%= button_to "Book now", cinema_path, method: :get, :class => "btn btn-primary"%>
+  <% end %>
 <% end %>
 <br>
 

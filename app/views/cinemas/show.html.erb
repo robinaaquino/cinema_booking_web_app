@@ -5,7 +5,7 @@
 <% if @movies.any? %>
   <% @movies.each do |movie| %>
     <h4>
-      Movie Name: <%= movie.name %>
+      Movie Name: <%= link_to movie.name, movie %>
     </h4>
     <h4>
       Number of Bookings: <%= @seat_count %>

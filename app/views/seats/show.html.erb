@@ -1,4 +1,8 @@
 <p>
+  Full Name: <%= link_to @seat.user.full_name, @seat.user %>
+</p>
+
+<p>
   Time Slot: <%= "#{@time_slot_values[:"#{@seat.timeslot}"]}" %>
 </p>
 

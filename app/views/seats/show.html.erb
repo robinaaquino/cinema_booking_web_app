@@ -7,9 +7,9 @@
 </p>
 
 <p>
-  Cinema ID: <%= @seat.cinema_id %>
+  Cinema Name: <%= link_to @seat.cinema.name, @seat.cinema %>
 </p>
 
 <p>
-  Movie Name: <%= @movie.name%>
+  Movie Name: <%= link_to @movie.name, @movie%>
 </p>

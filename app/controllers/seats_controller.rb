@@ -11,7 +11,7 @@ class SeatsController < ApplicationController
   end
 
   def show
-    @movie = Movie.where(cinema_id: @seat.cinema_id)
+    @movie = Movie.where(cinema_id: @seat.cinema_id).first
   end
 
   def create

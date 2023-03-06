@@ -20,7 +20,7 @@ class SeatsController < ApplicationController
 
     if @exists.nil?
       if @seat.save
-        flash.now[:success] = "Successfully created a seat"
+        flash[:success] = "Successfully created a seat"
         redirect_to @seat
       else
         flash[:danger] = "Unable to create seat"

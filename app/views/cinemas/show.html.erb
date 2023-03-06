@@ -11,33 +11,34 @@
       Number of Bookings: <%= @seat_count %>
     </p>
 
-    <% if @seat_count > 0 %>
-      <br>
-      <div>
-        <% @all_seats.each do |seat| %>
-          <p>
-            Full Name: <%= link_to seat.user.full_name, seat.user %>
-          </p>
-          <p>
-            Time Slot: <%= seat.timeslot %>
-          </p>
-          <p>
-            Seat Number: <%= seat.seat_number %>
-          </p>
-          <br>
-        <% end %>
-      </div>
-    <%end%>
-
-    <% if logged_in? %>
-      <%= button_to "Book seats", new_seat_path, method: :get, :class => "btn btn-primary", params: { cinema_id: @cinema.id }%>
-    <%end%>
+    <% @time_slot.each do |key, value| %>
+      <% if value.length < 10 %>
+        <%= button_to  "#{@time_slot_values[:"#{key}"]}", timeslot_cinemas_path, :params => { :time_slot => "#{key}", :cinema_id => "#{@cinema.id}" }, method: :get, :class => "btn btn-primary" %>
+      <% end %>
+    <% end %>
   <%end%>
 <% end %>
 
 <%= button_to "Back to cinemas", cinemas_path, method: :get, :class => "btn btn-primary"%>
 
 <% if @is_admin %>
+  <% if @seat_count > 0 %>
+    <br>
+    <div>
+      <% @cinema_seats.each do |seat| %>
+        <p>
+          Full Name: <%= link_to seat.user.full_name, seat.user %>
+        </p>
+        <p>
+          Time Slot: <%= seat.timeslot %>
+        </p>
+        <p>
+          Seat Number: <%= seat.seat_number %>
+        </p>
+        <br>
+      <% end %>
+    </div>
+  <%end%>
   <%= button_to "Edit this cinema", edit_cinema_path(@cinema), method: :get, :class => "btn btn-primary"%>
   <%= button_to "Destroy this cinema", @cinema, method: :delete, :class => "btn btn-primary"%>
 <% end %>

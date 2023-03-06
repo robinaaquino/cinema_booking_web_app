@@ -1,3 +1,4 @@
+<h2>User Details</h2>
 <p>
   Full Name: <%= @user.full_name %>
 </p>
@@ -6,19 +7,25 @@
 </p>
 
 <h2>Booked Seats</h2>
-<% @seats.each do |seat| %>
-  <p>
-    Timeslot: <%= seat.timeslot %>
-  </p>
-  <p>
-    Seat Number: <%= seat.seat_number %>
-  </p>
-  <p>
-    Cinema Name: <%= link_to seat.cinema.name, seat.cinema %>
-  </p>
-   <p>
-    Movie Name: <%= @movies[seat.cinema_id] %>
-  </p>
-  <br>
-<%end%>
+
+<table class ="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Cinema Name</th>
+      <th scope="col">Timeslot</th>
+      <th scope="col">Seat Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @seats.each do |seat| %>
+      <tr>
+        <th scope="row"><%= seat.id %></th>
+        <td><%= link_to seat.cinema.name, seat.cinema %></td>
+        <td><%= "#{@time_slot_values[:"#{seat.timeslot}"]}" %></td>
+        <td><%= "#{@seat_number_values[:"#{seat.seat_number}"]}" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 

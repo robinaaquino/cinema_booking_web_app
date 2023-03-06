@@ -12,12 +12,10 @@
     </p>
 
     <% @time_slot.each do |key, value| %>
-      <div class ="btn-group" role="group">
-          <% if value.length < 10 %>
-            <div class ="col">
-              <%= button_to  "#{@time_slot_values[:"#{key}"]}", timeslot_cinemas_path, :params => { :time_slot => "#{key}", :cinema_id => "#{@cinema.id}" }, method: :get, :class => "btn btn-primary" %>
-            </div>
-          <% end %>
+      <div class="btn-group" role="group">
+        <% if value.length < 10 %>
+          <%= button_to "#{@time_slot_values[:"#{key}"]}", timeslot_cinemas_path, :params => { :time_slot => "#{key}", :cinema_id => "#{@cinema.id}" }, method: :get, :class => "btn btn-primary" %>
+        <% end %>
       </div>
     <% end %>
   <%end%>
@@ -52,9 +50,14 @@
 
     </div>
   <%end%>
+
+  <br>
+<% end %>
+
+<% if @is_admin %>
   <%= button_to "Edit this cinema", edit_cinema_path(@cinema), method: :get, :class => "btn btn-primary"%>
   <br>
   <%= button_to "Delete this cinema", @cinema, method: :delete, :class => "btn btn-primary"%>
   <br>
 <% end %>
-<%= button_to "Back to cinemas", cinemas_path, method: :get, :class => "btn btn-primary"%>
+  <%= button_to "Back to cinemas", cinemas_path, method: :get, :class => "btn btn-primary"%>

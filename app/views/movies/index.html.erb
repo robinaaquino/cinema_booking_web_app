@@ -6,19 +6,21 @@
   <p><%= link_to "Create a new movie", new_movie_path %></p>
 <% end %>
 
-<table class ="table table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Movie Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @movies.each do |movie| %>
+<% if @movies.length > 0 %>
+  <table class ="table table-striped">
+    <thead class="thead-dark">
       <tr>
-        <th scope="row"><%= movie.id %></th>
-        <td><%= link_to movie.name, movie %></td>
+        <th scope="col">ID</th>
+        <th scope="col">Movie Name</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @movies.each do |movie| %>
+        <tr>
+          <th scope="row"><%= movie.id %></th>
+          <td><%= link_to movie.name, movie %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

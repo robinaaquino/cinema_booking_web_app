@@ -6,21 +6,23 @@
   <p><%= link_to "Create a new cinema", new_cinema_path %></p>
 <% end %>
 
-<table class ="table table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Cinema Name</th>
-      <th scope="col">Bookings Count</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @cinemas.each do |cinema| %>
+<% if @cinemas.length > 0 %>
+  <table class ="table table-striped">
+    <thead class="thead-dark">
       <tr>
-        <th scope="row"><%= cinema.id %></th>
-        <td><%= link_to cinema.name, cinema %></td>
-        <td><%= @cinema_info[cinema.id] %></td>
+        <th scope="col">ID</th>
+        <th scope="col">Cinema Name</th>
+        <th scope="col">Bookings Count</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @cinemas.each do |cinema| %>
+        <tr>
+          <th scope="row"><%= cinema.id %></th>
+          <td><%= link_to cinema.name, cinema %></td>
+          <td><%= @cinema_info[cinema.id] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -18,8 +18,6 @@ class CinemasController < ApplicationController
     @movies = @cinema.movies
     @seat_count = Seat.where(cinema_id: @cinema.id).count
     @cinema_seats = Seat.includes(:user, :cinema)
-    @all_seats = Seat.all
-    @time_slot = Hash.new { |hash, key| hash[key] = [] }
     @time_slot_values = {
       "_10am": "10 AM",
       "_2pm": "2 PM",
@@ -38,17 +36,6 @@ class CinemasController < ApplicationController
       "seat_8": "Seat 9",
       "seat_9": "Seat 10"
     }
-
-    @all_seats.each do |seat|
-      puts @time_slot[seat.timeslot]
-      if @time_slot[seat.timeslot].empty?
-        @time_slot[seat.timeslot] = []
-        @time_slot[seat.timeslot].push(seat)
-      else
-        @time_slot[seat.timeslot].push(seat)
-      end
-    end
-
   end
 
   def new

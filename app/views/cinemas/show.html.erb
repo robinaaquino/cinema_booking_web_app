@@ -11,11 +11,9 @@
       Number of Bookings: <%= @seat_count %>
     </h3>
 
-    <% @time_slot.each do |key, value| %>
+    <% @time_slot_values.each do |key, value| %>
       <div class="btn-group" role="group">
-        <% if value.length < 10 %>
-          <%= button_to "#{@time_slot_values[:"#{key}"]}", timeslot_cinemas_path, :params => { :time_slot => "#{key}", :cinema_id => "#{@cinema.id}" }, method: :get, :class => "btn btn-primary" %>
-        <% end %>
+        <%= button_to "#{@time_slot_values[:"#{key}"]}", timeslot_cinemas_path, :params => { :time_slot => "#{key}", :cinema_id => "#{@cinema.id}" }, method: :get, :class => "btn btn-primary" %>
       </div>
     <% end %>
   <%end%>

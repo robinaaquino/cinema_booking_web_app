@@ -1,31 +1,37 @@
 <h2>User Details</h2>
-<p>
+<h3>
   Full Name: <%= @user.full_name %>
-</p>
-<p>
-  Role: <%= @user.role %>
-</p>
+</h3>
+<h3>
+  Email: <%= @user.email %>
+</h3>
+<h3>
+  Mobile Number: <%= @user.number %>
+</h3>
 
-<h2>Booked Seats</h2>
+<% if @seats.length > 0 %>
+  <h2>Booked Seats</h2>
 
-<table class ="table table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Cinema Name</th>
-      <th scope="col">Timeslot</th>
-      <th scope="col">Seat Number</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @seats.each do |seat| %>
+  <table class ="table table-striped">
+    <thead class="thead-dark">
       <tr>
-        <th scope="row"><%= seat.id %></th>
-        <td><%= link_to seat.cinema.name, seat.cinema %></td>
-        <td><%= "#{@time_slot_values[:"#{seat.timeslot}"]}" %></td>
-        <td><%= "#{@seat_number_values[:"#{seat.seat_number}"]}" %></td>
+        <th scope="col">ID</th>
+        <th scope="col">Cinema Name</th>
+        <th scope="col">Timeslot</th>
+        <th scope="col">Seat Number</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
+    </thead>
+    <tbody>
+      <% @seats.each do |seat| %>
+        <tr>
+          <th scope="row"><%= seat.id %></th>
+          <td><%= link_to seat.cinema.name, seat.cinema %></td>
+          <td><%= "#{@time_slot_values[:"#{seat.timeslot}"]}" %></td>
+          <td><%= "#{@seat_number_values[:"#{seat.seat_number}"]}" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h2>No booked seats </h2>
+<% end %>

@@ -1,15 +1,15 @@
-<p>
+<h3>
   Cinema Name: <%= @cinema.name %>
-</p>
+</h3>
 
 <% if @movies.any? %>
   <% @movies.each do |movie| %>
-    <p>
+    <h3>
       Movie Name: <%= movie.name %>
-    </p>
-    <p>
+    </h3>
+    <h3>
       Number of Bookings: <%= @seat_count %>
-    </p>
+    </h3>
 
     <% @time_slot.each do |key, value| %>
       <div class="btn-group" role="group">

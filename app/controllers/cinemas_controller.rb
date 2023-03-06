@@ -1,6 +1,7 @@
 class CinemasController < ApplicationController
   before_action :set_cinema, only: [:show, :edit, :update, :destroy]
   before_action :admin_user, only: [:create, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:create, :edit, :update, :destroy, :timeslot]
 
   def index
     @cinemas = Cinema.all

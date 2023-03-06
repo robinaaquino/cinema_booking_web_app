@@ -1,43 +1,63 @@
-<p>
-  Name: <%= @cinema.name %>
-</p>
+<h3>
+  Cinema Name: <%= @cinema.name %>
+</h3>
 
 <% if @movies.any? %>
   <% @movies.each do |movie| %>
-    <p>
+    <h4>
       Movie Name: <%= movie.name %>
-    </p>
-    <p>
+    </h4>
+    <h4>
       Number of Bookings: <%= @seat_count %>
-    </p>
+    </h4>
 
-    <% if @seat_count > 0 %>
-      <br>
-      <div>
-        <% @all_seats.each do |seat| %>
-          <p>
-            Full Name: <%= link_to seat.user.full_name, seat.user %>
-          </p>
-          <p>
-            Time Slot: <%= seat.timeslot %>
-          </p>
-          <p>
-            Seat Number: <%= seat.seat_number %>
-          </p>
-          <br>
-        <% end %>
+    <% @time_slot_values.each do |key, value| %>
+      <div class="btn-group" role="group">
+        <%= button_to "#{@time_slot_values[:"#{key}"]}", timeslot_cinemas_path, :params => { :time_slot => "#{key}", :cinema_id => "#{@cinema.id}" }, method: :get, :class => "btn btn-primary" %>
       </div>
-    <%end%>
-
-    <% if logged_in? %>
-      <%= button_to "Book seats", new_seat_path, method: :get, :class => "btn btn-primary", params: { cinema_id: @cinema.id }%>
-    <%end%>
+    <% end %>
   <%end%>
 <% end %>
 
-<%= button_to "Back to cinemas", cinemas_path, method: :get, :class => "btn btn-primary"%>
+
+
+<% if @is_admin %>
+  <% if @seat_count > 0 %>
+    <h2> All bookings </h2>
+    <br>
+    <div>
+      <table class ="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Time Slot</th>
+            <th scope="col">Seat Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cinema_seats.each do |seat| %>
+            <tr>
+              <th scope="row"><%= seat.id %></th>
+              <td><%= link_to seat.user.full_name, seat.user %></td>
+              <td><%= "#{@time_slot_values[:"#{seat.timeslot}"]}" %></td>
+              <td><%= "#{@seat_number_values[:"#{seat.seat_number}"]}" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  <%end%>
+
+  <br>
+<% end %>
 
 <% if @is_admin %>
   <%= button_to "Edit this cinema", edit_cinema_path(@cinema), method: :get, :class => "btn btn-primary"%>
-  <%= button_to "Destroy this cinema", @cinema, method: :delete, :class => "btn btn-primary"%>
+  <br>
+  <%= button_to "Delete this cinema", @cinema, method: :delete, :class => "btn btn-primary"%>
 <% end %>
+  <br>
+  <br>
+  <%= button_to "Back to cinemas", cinemas_path, method: :get, :class => "btn btn-primary"%>

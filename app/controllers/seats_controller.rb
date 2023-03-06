@@ -1,8 +1,27 @@
 class SeatsController < ApplicationController
   before_action :set_seat, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, only: [:index]
 
   def index
     @seats = Seat.all
+    @time_slot_values = {
+      "_10am": "10 AM",
+      "_2pm": "2 PM",
+      "_6pm": "6 PM",
+      "_10pm": "10 PM"
+    }
+    @seat_number_values = {
+      "seat_0": "Seat 1",
+      "seat_1": "Seat 2",
+      "seat_2": "Seat 3",
+      "seat_3": "Seat 4",
+      "seat_4": "Seat 5",
+      "seat_5": "Seat 6",
+      "seat_6": "Seat 7",
+      "seat_7": "Seat 8",
+      "seat_8": "Seat 9",
+      "seat_9": "Seat 10"
+    }
   end
 
   def new
@@ -11,7 +30,25 @@ class SeatsController < ApplicationController
   end
 
   def show
-    @movie = Movie.where(cinema_id: @seat.cinema_id)
+    @time_slot_values = {
+      "_10am": "10 AM",
+      "_2pm": "2 PM",
+      "_6pm": "6 PM",
+      "_10pm": "10 PM"
+    }
+    @seat_number_values = {
+      "seat_0": "Seat 1",
+      "seat_1": "Seat 2",
+      "seat_2": "Seat 3",
+      "seat_3": "Seat 4",
+      "seat_4": "Seat 5",
+      "seat_5": "Seat 6",
+      "seat_6": "Seat 7",
+      "seat_7": "Seat 8",
+      "seat_8": "Seat 9",
+      "seat_9": "Seat 10"
+    }
+    @movie = Movie.where(cinema_id: @seat.cinema_id).first
   end
 
   def create
@@ -20,10 +57,10 @@ class SeatsController < ApplicationController
 
     if @exists.nil?
       if @seat.save
-        flash.now[:success] = "Successfully created a seat"
+        flash[:success] = "Successfully booked a seat"
         redirect_to @seat
       else
-        flash[:danger] = "Unable to create seat"
+        flash[:danger] = "Unable to book a seat"
         redirect_to cinemas_url
       end
     else
@@ -47,10 +84,10 @@ class SeatsController < ApplicationController
 
   def destroy
     if @seat.destroy
-      flash.now[:success] = "Successfully deleted a seat"
+      flash.now[:success] = "Successfully unbooked a seat"
       redirect_to seats_url
     else
-      flash.now[:danger] = "Unable to delete seat"
+      flash.now[:danger] = "Unable to unbook seat"
       render 'index'
     end
   end

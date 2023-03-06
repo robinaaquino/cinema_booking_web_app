@@ -1,38 +1,29 @@
-<h1> Users <h1>
 
-<% @users.each do |user| %>
-  <div class="container">
-    <span>
-      Full Name: <%= user.full_name %>
-    </span>
-    <br>
-    <span>
-      Role: <%= user.role %>
-    </span>
-    <br>
-    <span>
-      <% if @seats[user.id] %>
-        Bookings:
-        <% @seats[user.id].each do |seat| %>
-          <div class="container">
-            <p>
-              Timeslot: <%= seat.timeslot %>
-            </p>
-            <p>
-              Seat Number: <%= seat.seat_number %>
-            </p>
-            <p>
-              Cinema Name: <%= seat.cinema.name %>
-            </p>
-            <p>
-              Movie Name: <%= @movies_info[seat.cinema_id]%>
-            </p>
-            <br>
-          </div>
-        <% end %>
+
+<% if @users.length > 0 %>
+  <h1> List of all users <h1>
+  <table class ="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Full Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Mobile Number</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <th scope="row"><%= user.id %></th>
+          <td><%= link_to user.full_name, user %></td>
+          <td><%= user.email %></td>
+          <td><%= user.number %></td>
+          <td><%= user.role %></td>
+        </tr>
       <% end %>
-    </span>
-    <br>
-    <br>
-  </div>
+    </tbody>
+  </table>
+<% else %>
+  <h1> No users <h1>
 <% end %>

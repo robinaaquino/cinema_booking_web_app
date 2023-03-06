@@ -1,15 +1,15 @@
 <p>
-  Time Slot: <%= @seat.timeslot %>
+  Time Slot: <%= "#{@time_slot_values[:"#{@seat.timeslot}"]}" %>
 </p>
 
 <p>
-  Seat Number: <%= @seat.seat_number %>
+  Seat Number: <%= "#{@seat_number_values[:"#{@seat.seat_number}"]}" %>
 </p>
 
 <p>
-  Cinema ID: <%= @seat.cinema_id %>
+  Cinema Name: <%= link_to @seat.cinema.name, @seat.cinema %>
 </p>
 
 <p>
-  Movie Name: <%= @movie.name%>
+  Movie Name: <%= link_to @movie.name, @movie%>
 </p>

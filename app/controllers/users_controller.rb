@@ -23,6 +23,24 @@ class UsersController < ApplicationController
   end
 
   def show
+    @time_slot_values = {
+      "_10am": "10 AM",
+      "_2pm": "2 PM",
+      "_6pm": "6 PM",
+      "_10pm": "10 PM"
+    }
+    @seat_number_values = {
+      "seat_0": "Seat 1",
+      "seat_1": "Seat 2",
+      "seat_2": "Seat 3",
+      "seat_3": "Seat 4",
+      "seat_4": "Seat 5",
+      "seat_5": "Seat 6",
+      "seat_6": "Seat 7",
+      "seat_7": "Seat 8",
+      "seat_8": "Seat 9",
+      "seat_9": "Seat 10"
+    }
     @user = User.find(params[:id])
     @all_seats = Seat.includes(:user, :cinema)
     @seats = []
@@ -46,7 +64,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash.now[:success] = "Successfully created account"
+      flash.now[:success] = "Successfully created an account"
       redirect_to @user
     else
       flash.now[:danger] = "Unable to sign up"

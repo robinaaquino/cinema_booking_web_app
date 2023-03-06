@@ -1,0 +1,31 @@
+<h1>
+  <%= @time_slot_values[:"#{@timeslot_value}"] %>
+</h1>
+
+<% @seat_number_values.each do |seat_key, seat_value| %>
+  <% if @seats["#{seat_key}"].nil? %>
+    <div>
+      <div class ="row">
+        <%= button_to "Book", book_path, :class => "btn btn-primary", params: {"seat" => { timeslot: @timeslot_value, seat_number: seat_key, cinema_id: @cinema_id }}%>
+      </div>
+      <div class ="row">
+        <%= seat_value %>
+      </div>
+      <br>
+    </div>
+  <% else %>
+    <div>
+      <div class ="row">
+        <% if is_admin? %>
+          <%= button_to "Booked", @seats["#{seat_key}"], :class => "btn btn-secondary", params: {"seat" => {timeslot: @seats["#{seat_key}"].timeslot, seat_number: @seats["#{seat_key}"].seat_number, cinema_id: @seats["#{seat_key}"].cinema_id}}%>
+        <%else%>
+          <button class="btn btn-secondary">Booked</button>
+        <%end%>
+      </div>
+      <div class ="row">
+        <%= seat_value %>
+      </div>
+      <br>
+    </div>
+  <% end %>
+<% end %>

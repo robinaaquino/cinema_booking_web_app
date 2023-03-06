@@ -11,7 +11,8 @@
             </a>
             <ul class="dropdown-menu">
               <% if is_admin? %>
-                <li><%= link_to "All Bookings", users_path %></li>
+                <li><%= link_to "All users", users_path %></li>
+                <li><%= link_to "All bookings", seats_path %></li>
               <% else %>
                 <li><%= link_to "Bookings", current_user %></li>
               <% end %>
